@@ -1,0 +1,26 @@
+meta {
+  name: Edit
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:5229/api/person/0401200012346
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "dni": "0401200012346",
+    "firstName": "Jose Jose",
+    "lastName": "Perez Pereira",
+    "birthDate": "2001-05-23",
+    "gender": "M"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
