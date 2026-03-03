@@ -11,7 +11,7 @@ using PersonsApp.Database;
 namespace PersonsApp.Migrations
 {
     [DbContext(typeof(PersonsDbContext))]
-    [Migration("20260224015030_Init")]
+    [Migration("20260227012143_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -28,7 +28,8 @@ namespace PersonsApp.Migrations
                         .HasColumnName("id");
 
                     b.Property<DateTime>("BirthDate")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("birth_date");
 
                     b.Property<string>("CreatedById")
                         .HasColumnType("TEXT")
@@ -41,20 +42,24 @@ namespace PersonsApp.Migrations
                     b.Property<string>("DNI")
                         .IsRequired()
                         .HasMaxLength(13)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("dni");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(40)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("first_name");
 
                     b.Property<string>("Gender")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("gender");
 
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(40)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("last_name");
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("TEXT")

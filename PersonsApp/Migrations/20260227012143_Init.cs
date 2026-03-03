@@ -16,11 +16,11 @@ namespace PersonsApp.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    DNI = table.Column<string>(type: "TEXT", maxLength: 13, nullable: false),
-                    FirstName = table.Column<string>(type: "TEXT", maxLength: 40, nullable: false),
-                    LastName = table.Column<string>(type: "TEXT", maxLength: 40, nullable: false),
-                    BirthDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Gender = table.Column<string>(type: "TEXT", nullable: true),
+                    dni = table.Column<string>(type: "TEXT", maxLength: 13, nullable: false),
+                    first_name = table.Column<string>(type: "TEXT", maxLength: 40, nullable: false),
+                    last_name = table.Column<string>(type: "TEXT", maxLength: 40, nullable: false),
+                    birth_date = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    gender = table.Column<string>(type: "TEXT", nullable: true),
                     created_by_id = table.Column<string>(type: "TEXT", nullable: true),
                     created_date = table.Column<DateTime>(type: "TEXT", nullable: false),
                     updated_by_id = table.Column<string>(type: "TEXT", nullable: true),
