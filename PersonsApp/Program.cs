@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using PersonsApp.Database;
+using PersonsApp.Services.Persons;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<PersonsDbContext> (Options => 
     Options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 //Cuando dice que espera un genérico se pone <>
+
+/*builder.Services.AddScoped
+builder.Services.AddSingleton*/
+
+// después de la , va la clase para la conexión de la base de datos, cada referencia lleva una instancia
+//si cambio la base de datos solo cambio la instancia y no me complico mucho
+builder.Services.AddTransient<IPersonService, PersonService>();
+
 
 builder.Services.AddOpenApi();
 

@@ -12,7 +12,7 @@ namespace PersonsApp.Entities
     {
         [Key]
         [Column("id")]
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         
         //Audit fields <- son para saber quien modifico, quien creo, en que momento y en que hora
         [Column("created_by_id")]

@@ -5,11 +5,12 @@ meta {
 }
 
 get {
-  url: http://localhost:5229/api/person
+  url: {{PATH_URL}}/person
   body: none
   auth: inherit
 }
 
 settings {
   encodeUrl: true
+  timeout: 0
 }

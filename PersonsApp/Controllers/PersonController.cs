@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using PersonsApp.Dtos.Persons;
 using PersonsApp.Entities;
+using PersonsApp.Services.Persons;
 
 namespace PersonsApp.Controllers
 {
@@ -9,8 +11,10 @@ namespace PersonsApp.Controllers
     {
         /*El método se usa cuando se crea un objeto nuevo*/
         private readonly List<PersonEntity> _persons; //El guion bajo se usa para que salgan mas rapido al momento de llamarla
-        public PersonController() //ctor método constructor 
+        private readonly IPersonService _personService;
+        public PersonController(IPersonService personService) //ctor método constructor 
         {
+            _personService = personService;
            // _persons = new List<PersonEntity>();
            /* _persons.Add(new PersonEntity
             {
@@ -54,53 +58,29 @@ namespace PersonsApp.Controllers
             {
                 return Ok(_persons);
             }
-            [HttpGet("{dni}")]// Se usa Get porque solo voy a hacer una lectura de  // si quiero agregar mas parametros solo pongo pleca
-            public IActionResult GetOne(string dni)
+            [HttpGet("{id}")]// Se usa Get porque solo voy a hacer una lectura de  // si quiero agregar mas parametros solo pongo pleca
+            public async Task<ActionResult> GetOne(string id)
             {
-                var person = _persons.FirstOrDefault(p => p.DNI == dni);
-
-                return person !=null ? Ok(person) : NotFound(new {Message = "Persona no encontrada."});
+                var result = await _personService.GetOneByIdAsync(id);
+                return StatusCode(result.StatusCode, result);
             }
             [HttpPost]
-            public IActionResult Create(PersonEntity person)
+            public async Task<ActionResult> Create(PersonCreateDto dto)
             {
-                var personExist = _persons.Any(p => p.DNI == person.DNI);
-
-                if (!personExist)
-                {
-            _persons.Add(person);
-                return Created();
-                }
-                
-                    return BadRequest (new {Message = "El DNI ya esta registrado"});
-                
+                var result = await _personService.CreateAsync(dto);
+                return StatusCode(result.StatusCode, result);
             }
-            [HttpPut("{dni}")]
-            public IActionResult update(string dni, PersonEntity person)
+            [HttpPut("{id}")]
+            public async Task <IActionResult> update(string id, PersonEditDto dto)
             {
-                var oldPerson = _persons.FirstOrDefault(p => p.DNI == dni);
-                if (oldPerson is null)
-                {
-                    return NotFound(new {Message = "Registro no encontrado."});  
-                }
-                _persons.Remove(oldPerson);
-                _persons.Add(person);
-                Console.WriteLine($"Persona actualizada : {person.DNI} - {person.FirstName}  {person.LastName}");
-
-                return Ok(new {Message = "Registro editado correctamente "});   
+                 var result = await _personService.EditAsync(id, dto);
+                 return StatusCode(result.StatusCode, result);
             }
-            [HttpDelete("{dni}")]
-            public IActionResult Remove(string dni)
+            [HttpDelete("{id}")]
+            public async Task <IActionResult> Delete(string id)
             {
-                var Person = _persons.FirstOrDefault(p => p.DNI == dni);
-                if (Person is null)
-                {
-                    return NotFound(new {Message = "Registro no encontrado."});  
-                }
-                _persons.Remove(Person);
-                Console.WriteLine($"Persona eliminada");
-
-                return Ok(new {Message = "Registro eliminado correctamente "});   
+                 var result = await _personService.DeleteAsync(id);
+                 return StatusCode(result.StatusCode, result); 
             }
     }
 }
