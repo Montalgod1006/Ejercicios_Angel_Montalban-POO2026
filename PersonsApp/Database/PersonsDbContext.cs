@@ -10,5 +10,6 @@ namespace PersonsApp.Database
             
         }
         public DbSet<PersonEntity> Persons { get; set; } 
+        public DbSet<CountryEntity> Countries { get; set; } 
     }
 }

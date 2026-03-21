@@ -20,5 +20,11 @@ namespace PersonsApp.Dtos.Persons
         public DateTime BirthDate { get; set; }
         public string  Gender { get; set; }
 
+        [Display(Name = "País")]
+        [Required(ErrorMessage ="El{0} es requerido")]
+        //[StringLength(50, ErrorMessage = "El {0} debe tener un mínimo{2} y máximo de {1}", MinimumLength = 3)]
+        public string CountryId { get; set; }
+        //ToDo: agregar validación de GUID
+
     }
 }

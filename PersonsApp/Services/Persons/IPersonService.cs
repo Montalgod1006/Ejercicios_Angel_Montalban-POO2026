@@ -6,6 +6,7 @@ namespace PersonsApp.Services.Persons
     public interface IPersonService
     {
         //solo métodos y funciones, nada de variables, tampoco código con lógica 
+        Task<ResponseDto<PageDto<List<PersonDto>>>> GetPageAsync(string searchTerm = "", int page = 1, int pageSize = 10);
         Task<ResponseDto<PersonDto>> GetOneByIdAsync(string id); //alt mas f2 para renombrar
         Task <ResponseDto<PersonActionResponseDto>> CreateAsync(PersonCreateDto dto);
         Task <ResponseDto<PersonActionResponseDto>> EditAsync(string id, PersonEditDto dto);
