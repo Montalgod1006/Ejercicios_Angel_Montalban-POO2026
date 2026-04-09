@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PersonsApp.Database;
 
@@ -10,9 +11,11 @@ using PersonsApp.Database;
 namespace PersonsApp.Migrations
 {
     [DbContext(typeof(PersonsDbContext))]
-    partial class PersonsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260408014852_AddSecurityTables")]
+    partial class AddSecurityTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.5");

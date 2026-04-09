@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using PersonsApp.Database;
+using PersonsApp.Extensions;
 using PersonsApp.Services.Persons;
 using Scalar.AspNetCore;
 
@@ -18,6 +19,7 @@ builder.Services.AddSingleton*/
 //si cambio la base de datos solo cambio la instancia y no me complico mucho
 builder.Services.AddTransient<IPersonService, PersonService>();
 
+builder.Services.AddAuthenticationConfig(builder.Configuration);
 
 builder.Services.AddOpenApi();
 
