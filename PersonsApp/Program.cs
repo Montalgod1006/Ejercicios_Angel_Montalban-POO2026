@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using PersonsApp.Database;
 using PersonsApp.Extensions;
 using PersonsApp.Services.Persons;
+using PersonsApp.Services.Roles;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +19,7 @@ builder.Services.AddSingleton*/
 // después de la , va la clase para la conexión de la base de datos, cada referencia lleva una instancia
 //si cambio la base de datos solo cambio la instancia y no me complico mucho
 builder.Services.AddTransient<IPersonService, PersonService>();
+builder.Services.AddTransient<IRoleService, RoleService>();
 
 builder.Services.AddAuthenticationConfig(builder.Configuration);
 
